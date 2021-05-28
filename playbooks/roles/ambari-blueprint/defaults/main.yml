@@ -12,12 +12,12 @@ registry_dns_bind_port: "53"
 ## path configuration ##
 ########################
 # Common base dirs
-base_log_dir: "/var/log"
+base_log_dir: "/app1/log"
 base_tmp_dir: "/tmp"
 
 # Services base dirs
-hadoop_base_dir: "/hadoop"
-hdfs_data_base_dir: "/hadoop"
+hadoop_base_dir: "/app1"
+hdfs_data_base_dir: "/app2"
 kafka_log_base_dir: "/kafka-logs"
 nifi_repositories_base_dir: "/var/lib/nifi"
 ams_base_dir: "/var/lib"

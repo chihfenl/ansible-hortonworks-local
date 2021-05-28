@@ -157,7 +157,7 @@ smartsense:                                               # Hortonworks subscrip
 
 wait: true                                                # wait for the cluster to finish installing
 wait_timeout: 3600                                        # 60 minutes
-accept_gpl: yes                                           # set to yes to allow Ambari to install GPL licensed libraries
+accept_gpl: no                                           # set to yes to allow Ambari to install GPL licensed libraries
 
 cluster_template_file: 'cluster_template.j2'              # the cluster creation template file
 
@@ -178,7 +178,7 @@ blueprint_name: '{{ cluster_name }}_blueprint'            # the name of the blue
 blueprint_file: 'blueprint_dynamic.j2'                    # the blueprint JSON file - 'blueprint_dynamic.j2' is a Jinja2 template that generates the required JSON
 blueprint_dynamic:                                       # properties for the dynamic blueprint - these are only used by the 'blueprint_dynamic.j2' template to generate the JSON
   - host_group: "hdp-management"
-    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'OOZIE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT']
+    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'HBASE_CLIENT']
     services:
       - AMBARI_SERVER
       - ZOOKEEPER_SERVER
@@ -188,15 +188,15 @@ blueprint_dynamic:                                       # properties for the dy
       - METRICS_GRAFANA
       - METRICS_MONITOR
   - host_group: "hdp-master"
-    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'OOZIE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT']
+    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'HBASE_CLIENT']
     services:
       - ZOOKEEPER_SERVER
       - NAMENODE
+      - SECONDARY_NAMENODE
       - HBASE_MASTER
-      - INFRA_SOLR
       - METRICS_MONITOR
   - host_group: "hdp-slave"
-    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'OOZIE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT']
+    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'HBASE_CLIENT']
     services:
       - ZOOKEEPER_SERVER
       - DATANODE
