@@ -1,0 +1,21 @@
+[all:vars]
+ansible_user=root
+ansible_ssh_pass=vagrant
+
+[hbase_ha:children]
+hdp-management
+hdp-master01
+hdp-master02
+hdp-slave
+
+[hdp-management]
+mgmnt01 ansible_host=192.168.100.2 ansible_user=root ansible_ssh_private_key_file="~/.ssh/id_rsa" rack=/default-rack
+
+[hdp-master01]
+master01 ansible_host=192.168.100.3 ansible_user=root ansible_ssh_private_key_file="~/.ssh/id_rsa" rack=/default-rack
+
+[hdp-master02]
+master02 ansible_host=192.168.100.4 ansible_user=root ansible_ssh_private_key_file="~/.ssh/id_rsa" rack=/default-rack
+
+[hdp-slave]
+slave01 ansible_host=192.168.100.5 ansible_user=root ansible_ssh_private_key_file="~/.ssh/id_rsa" rack=/default-rack
